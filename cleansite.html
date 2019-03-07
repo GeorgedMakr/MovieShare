@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Share</title>
+  <style>
+    #myVideo {
+        width: 70%;
+        height: 70%;
+      }
+    </style>
+</head>
+
+<body>
+
+  <center>
+    <h1> Movie Share </h1>
+  </center>
+  <center>
+    <video id="myVideo" controls> </video>
+  </center>
+
+  <center>
+    <form id="frm1" action="javascript:;" onsubmit="aletr(this)">
+      Insert torrent <input type="text" name="fname"><br>
+      <button onclick="loadfunction()" type="button">Start </button>
+      <!--p id="demo"></p-->
+
+    </form>
+  </center>
+
+  <script src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script>
+
+  <script>
+
+    // Load torrent from form 
+    function loadfunction() {
+      var x = document.getElementById("frm1");
+      var text = x.elements[0].value;
+
+
+      //document.getElementById("demo").innerHTML = text;
+      //alert(text);	
+      var torrentId = text;
+
+      var client = new WebTorrent()
+      client.add(torrentId, function (torrent) {
+
+        // Torrents can contain many files. Let's use the .mp4 file
+        var file = torrent.files.find(function (file) {
+          return file.name.endsWith('.mp4')
+        })
+
+        // Stream to myVideo 
+        file.renderTo('video#myVideo')
+      })
+
+
+    }
+  </script>
+
+  <h3>
+    <center>
+      <button onclick="playVid()" type="button">Play Video</button>
+      <button onclick="pauseVid()" type="button">Pause Video</button>
+      <button onclick="seekvid()" type="button">Seek Video</button>
+      <button onclick="getTime()" type="button">Show Time </button>
+      <p id="time"></p>
+
+
+
+    </center>
+  </h3>
+
+
+  <script> //button functions 
+
+    var vid = document.getElementById("myVideo");
+    function playVid() {
+      vid.play();
+    }
+    function seekvid() {
+      vid.pause();
+      vid.currentTime = 30;
+    }
+    function pauseVid() {
+      vid.pause();
+
+    }
+    function getTime() {
+      document.getElementById("time").innerHTML = vid.currentTime;
+      setTimeout(getTime, 1);
+    }
+  </script>
+
+
+
+  <script>
+    var vid = document.getElementById("myVideo");
+    function getstat() {
+
+      var p;
+
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+
+          var obj = JSON.parse(this.responseText);
+
+          if (obj.url != null) {
+            p = obj;
+            alert(p.url);
+          }
+
+
+
+        }
+      };
+
+      xmlhttp.open("GET", "getCurrentTime.php", true);
+      xmlhttp.send();
+
+      return p;
+    }
+
+
+
+  </script>
+  <script>
+
+
+    function Sendstat(a, b) {
+
+      var vid = document.getElementById("myVideo");
+      var input = a //url
+      var input2 = b //username
+      var u = vid.currentTime;
+      var n = u.toString();
+      var http = new XMLHttpRequest();
+      var url = 'sendCurrentTime.php';
+      var params = 'time='
+      var params2 = '&State=';
+      var state = "''";
+      var params3 = '&URL=';
+      var result3 = params3.concat(input);
+      var param4 = '&username=';
+      if (vid.paused) {
+        state = "PAUSE";
+      }
+      else {
+        state = "PLAY";
+
+      }
+
+      params2 = params2.concat(state);
+
+      var result = params.concat(n);
+      var result2 = result.concat(params2);
+      var result4 = result2.concat(result3);
+      var result5 = param4.concat(input2);
+
+      var result6 = result4.concat(result5);
+
+
+      http.open('POST', url, true);
+
+      //Send the proper header information along with the request
+      http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+      http.onreadystatechange = function () {//Call a function when the state changes.
+        if (http.readyState == 4 && http.status == 200) {
+          // alert(http.responseText);
+        }
+      }
+      http.send(result6);
+    }
+  </script>
+
+  <script>
+
+    getstat();
+    alert(c.url);
+    startmovie(o.url);
+  </script>
+
+
+
+
+</body>
+
+
+</html>
