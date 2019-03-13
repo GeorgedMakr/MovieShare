@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>Movie Share</title>
-  <style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
     #myVideo {
         width: 70%;
         height: 70%;
       }
     </style>
+  
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Share</title>
+  
 </head>
 
 <body>
@@ -17,18 +19,20 @@
   <center>
     <h1> Movie Share </h1>
   </center>
-  <center>
-    <video id="myVideo" controls> </video>
-  </center>
-
-  <center>
+   <center>
     <form id="frm1" action="javascript:;" onsubmit="aletr(this)">
       Insert torrent <input type="text" name="fname"><br>
-      <button onclick="loadfunction()" type="button">Start </button>
-      <!--p id="demo"></p-->
+      <button onclick="loadfunction()" type="button" class="btn btn-danger">Start </button>
+      
 
     </form>
   </center>
+  
+  <center>
+    <video id="myVideo" controls > </video>
+  </center>
+
+ 
 
   <script src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script>
 
@@ -62,10 +66,10 @@
 
   <h3>
     <center>
-      <button onclick="playVid()" type="button">Play Video</button>
-      <button onclick="pauseVid()" type="button">Pause Video</button>
-      <button onclick="seekvid()" type="button">Seek Video</button>
-      <button onclick="getTime()" type="button">Show Time </button>
+      <button onclick="playVid()" type="button" class="btn btn-primary">Play Video</button>
+      <button onclick="pauseVid()" type="button" class="btn btn-primary">Pause Video</button>
+      <button onclick="seekvid()" type="button" class="btn btn-primary">Sync Video</button>
+      <button onclick="getTime()" type="button" class="btn btn-primary">Show Time </button>
       <p id="time"></p>
 
 
