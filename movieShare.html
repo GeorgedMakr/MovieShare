@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<style>
+
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Monoton" rel="stylesheet">
+
+    <style>
+        font-family: 'IBM Plex Sans', sans-serif;
     #myVideo {
         width: 70%;
         height: 70%;
+      }
+        #header{
+         font-family: 'Monoton', cursive;
+      }
+        body{
+         font-family: 'IBM Plex Sans', sans-serif;
       }
     </style>
   
@@ -17,12 +27,12 @@
 <body>
 
   <center>
-    <h1> Movie Share </h1>
+    <h1 id="header"> Movie Share </h1>
   </center>
    <center>
     <form id="frm1" action="javascript:;" onsubmit="aletr(this)">
-      Insert torrent <input type="text" name="fname"><br>
-      <button onclick="loadfunction()" type="button" class="btn btn-danger">Start </button>
+      Insert torrent <input type="text" name="fname">
+      <button onclick="loadfunction()" type="button" class="btn btn-danger btn-sm">Start </button>
       
 
     </form>
