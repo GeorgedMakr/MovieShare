@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Monoton" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Monoton" rel="stylesheet">
 
     <style>
         
@@ -12,10 +11,11 @@
       }
         #header{
          font-family: 'Monoton', cursive;
+         font-size: 4em;
       }
         body{
          font-family: 'IBM Plex Sans', sans-serif;
-      }
+          }
     </style>
   
 <head>
@@ -27,7 +27,7 @@
 <body>
 
   <center>
-    <h1 id="header"> Movie Share </h1>
+    <h1 > Movie Share </h1>
   </center>
    <center>
     <form id="frm1" action="javascript:;" onsubmit="aletr(this)">
@@ -51,17 +51,12 @@
     // Load torrent from form 
     function loadfunction() {
       var x = document.getElementById("frm1");
-      var text = x.elements[0].value;
-
-
-      //document.getElementById("demo").innerHTML = text;
-      //alert(text);	
+      var text = x.elements[0].value;	
       var torrentId = text;
-
       var client = new WebTorrent()
       client.add(torrentId, function (torrent) {
 
-        // Torrents can contain many files. Let's use the .mp4 file
+        //Using mp4 files from torrents
         var file = torrent.files.find(function (file) {
           return file.name.endsWith('.mp4')
         })
